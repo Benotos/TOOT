@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>HOW TO BUY | $TOOT</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Nunito:wght@800;900&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- BRAND VARIABLES --- */
+        :root {
+            --mint: #8be8b6; --green: #14F195; --purple: #9945FF;
+            --yellow: #FFEB3B; --pink: #FF007A; --black: #000000;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Nunito', sans-serif; overflow-x: hidden;
+            background-color: var(--black); color: white; position: relative;
+        }
+
+        /* --- HYPNOTIC BACKGROUND --- */
+        .hypnotic-bg {
+            position: fixed; top: -50vh; left: -50vw; width: 200vw; height: 200vh;
+            background: repeating-conic-gradient(from 0deg, var(--mint) 0deg 15deg, var(--green) 15deg 30deg);
+            animation: spinBg 40s linear infinite; z-index: -3;
+        }
+        @keyframes spinBg { 100% { transform: rotate(360deg); } }
+
+        .bg-overlay {
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+            background: radial-gradient(circle, transparent 0%, rgba(0,0,0,0.9) 80%);
+            z-index: -2;
+        }
+
+        /* --- FLOATING EMOJIS (Ghosts & Cards) --- */
+        .floating-emoji {
+            position: fixed; bottom: -100px; font-size: 3.5rem;
+            animation: floatUp 6s infinite ease-in; opacity: 0; z-index: -1;
+            filter: drop-shadow(4px 4px 0px #000);
+        }
+        @keyframes floatUp { 
+            0% { transform: translateY(0) scale(1) rotate(0deg); opacity: 0; } 
+            20% { opacity: 1; } 
+            100% { transform: translateY(-120vh) scale(2.5) rotate(45deg); opacity: 0; } 
+        }
+
+        /* --- HEADER (EXACT MATCH) --- */
+        header {
+            position: relative; z-index: 100; display: flex; justify-content: space-between; align-items: center;
+            padding: 15px 5%; background: var(--black); border-bottom: 5px solid var(--mint);
+        }
+        .logo {
+            font-family: 'Bangers', cursive; font-size: clamp(2.5rem, 5vw, 4rem);
+            color: var(--yellow); text-decoration: none; -webkit-text-stroke: 2px var(--black); 
+            text-shadow: 4px 4px 0px var(--purple); transform: rotate(-3deg); transition: 0.2s;
+        }
+        .logo:hover { transform: rotate(3deg) scale(1.1); }
+        
+        .nav-links { display: flex; gap: 20px; align-items: center; }
+        .nav-links a {
+            color: white; text-decoration: none; font-family: 'Bangers', cursive;
+            font-size: 1.5rem; letter-spacing: 2px; -webkit-text-stroke: 1px var(--black); transition: 0.2s;
+        }
+        /* Active Link is now HOW TO BUY */
+        .nav-links a.active { color: var(--pink); text-shadow: 3px 3px 0px var(--black); transform: translateY(-3px); }
+        .nav-links a:hover { color: var(--yellow); text-shadow: 3px 3px 0px var(--black); transform: translateY(-3px); }
+
+        .btn-brutal {
+            background: var(--pink); color: white; font-family: 'Bangers', cursive; font-size: clamp(1.2rem, 3vw, 1.8rem); 
+            letter-spacing: 2px; padding: 10px 20px; border: 4px solid var(--black); border-radius: 50px;
+            box-shadow: 6px 6px 0px var(--black); cursor: pointer; transition: 0.1s; transform: rotate(2deg); white-space: nowrap;
+        }
+        .btn-brutal:active { box-shadow: 0 0 0 var(--black); transform: translate(6px, 6px) rotate(0deg); }
+        .menu-toggle { display: none; background: none; border: none; font-size: 2.5rem; color: var(--mint); cursor: pointer; text-shadow: 3px 3px 0px var(--black); }
+
+        /* --- HOW TO BUY CONTENT --- */
+        .buy-section {
+            position: relative; z-index: 10; padding: 60px 5% 100px;
+            max-width: 1000px; margin: 0 auto; text-align: center;
+        }
+        .page-title {
+            font-family: 'Bangers', cursive; font-size: clamp(4rem, 10vw, 8rem);
+            color: white; -webkit-text-stroke: 3px var(--black);
+            text-shadow: 8px 8px 0px var(--pink), 16px 16px 0px var(--black);
+            margin-bottom: 10px; transform: rotate(-2deg);
+        }
+        .page-subtitle {
+            font-size: clamp(1.2rem, 4vw, 1.8rem); font-weight: 900; background: var(--black); color: var(--yellow);
+            padding: 15px 30px; border: 4px solid var(--yellow); border-radius: 20px; 
+            box-shadow: 8px 8px 0px var(--yellow); display: inline-block; margin-bottom: 60px; transform: rotate(2deg);
+        }
+
+        /* Zig-Zag Steps */
+        .step-container {
+            display: flex; flex-direction: column; gap: 40px; text-align: left;
+        }
+        .step-card {
+            position: relative; padding: 40px; border: 6px solid var(--black); border-radius: 30px;
+            box-shadow: 15px 15px 0px var(--black); display: flex; align-items: center; gap: 30px;
+            transition: 0.2s;
+        }
+        .step-card:hover { transform: scale(1.02); }
+        
+        .step-number {
+            font-family: 'Bangers', cursive; font-size: 6rem; line-height: 0.8;
+            color: white; -webkit-text-stroke: 4px var(--black);
+            text-shadow: 6px 6px 0px var(--black); transform: rotate(-10deg);
+        }
+        
+        .step-content h3 { font-family: 'Bangers', cursive; font-size: 3rem; color: var(--black); margin-bottom: 10px; letter-spacing: 1px; }
+        .step-content p { font-size: 1.4rem; font-weight: 900; color: var(--black); line-height: 1.4; }
+
+        /* Step Colors & Rotations */
+        .step-1 { background: var(--mint); transform: rotate(-2deg); }
+        .step-2 { background: var(--purple); transform: rotate(2deg); margin-left: 5%; }
+        .step-2 .step-content h3, .step-2 .step-content p { color: white; }
+        .step-2 .step-number { color: var(--yellow); }
+        .step-3 { background: var(--pink); transform: rotate(-1deg); }
+        .step-4 { background: var(--yellow); transform: rotate(3deg); margin-left: 5%; }
+
+        /* Huge CA Box for Swap Step */
+        .giant-ca {
+            background: var(--black); color: var(--mint); border: 6px dashed var(--mint);
+            padding: 30px; border-radius: 30px; margin-top: 60px; text-align: center;
+            box-shadow: 15px 15px 0px var(--black); transform: rotate(-1deg);
+        }
+        .giant-ca h2 { font-family: 'Bangers', cursive; font-size: 3rem; margin-bottom: 15px; color: white; -webkit-text-stroke: 2px var(--black); }
+        .giant-ca .ca-text { font-family: monospace; font-size: clamp(1rem, 3vw, 1.5rem); font-weight: bold; background: white; color: var(--black); padding: 15px; border-radius: 15px; display: block; margin-bottom: 20px; word-break: break-all; border: 4px solid var(--black); }
+        .btn-giant-copy {
+            background: var(--pink); color: white; border: 5px solid var(--black); padding: 15px 40px; 
+            border-radius: 50px; font-family: 'Bangers', cursive; font-size: 2rem; 
+            cursor: pointer; transition: 0.2s; box-shadow: 6px 6px 0px var(--black);
+        }
+        .btn-giant-copy:hover { background: var(--yellow); color: var(--black); transform: translateY(-5px); }
+        .btn-giant-copy:active { box-shadow: 0 0 0 var(--black); transform: translate(6px, 6px); }
+
+        /* --- FOOTER --- */
+        footer { background: var(--black); border-top: 5px solid var(--pink); padding: 40px 5%; text-align: center; position: relative; z-index: 10; margin-top: 80px; }
+
+        @media (max-width: 900px) {
+            .nav-links { display: none; flex-direction: column; position: absolute; top: 100%; left: 0; width: 100%; background: var(--black); border-bottom: 5px solid var(--mint); padding: 20px 0; }
+            .nav-links.active { display: flex; }
+            .menu-toggle { display: block; }
+            .btn-brutal { display: none; }
+            .step-card { flex-direction: column; text-align: center; padding: 30px; gap: 15px; margin-left: 0 !important; }
+            .step-number { font-size: 5rem; transform: rotate(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="hypnotic-bg"></div>
+    <div class="bg-overlay"></div>
+
+    <div class="floating-emoji" style="left: 10%; animation-delay: 0s;">👻</div>
+    <div class="floating-emoji" style="left: 50%; animation-delay: 2.5s;">💳</div>
+    <div class="floating-emoji" style="left: 80%; animation-delay: 1s;">💸</div>
+
+    <header>
+        <a href="index.html" class="logo">$TOOT</a>
+        <button class="menu-toggle" id="menuToggleBtn">☰</button>
+        <nav class="nav-links" id="navLinks">
+            <a href="index.html">HOME</a>
+            <a href="tokenomics.html">TOKENOMICS</a>
+            <a href="how-to-buy.html" class="active">HOW TO BUY</a>
+            <a href="toot-booth.html">TOOT BOOTH</a>
+        </nav>
+        <button class="btn-brutal">CONNECT WALLET</button>
+    </header>
+
+    <main class="buy-section">
+        <h1 class="page-title">CATCH THE<br>BREEZE</h1>
+        <p class="page-subtitle">4 STEPS TO LETTING IT RIP</p>
+
+        <div class="step-container">
+            <div class="step-card step-1">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <h3>CREATE A WALLET</h3>
+                    <p>Download Phantom or your wallet of choice from the app store or Google Chrome extension store for free. Desktop users, download the google chrome extension by going to phantom.app.</p>
+                </div>
+            </div>
+            
+            <div class="step-card step-2">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <h3>GET SOME SOL</h3>
+                    <p>Have SOL in your wallet to switch to $TOOT. If you don’t have any SOL, you can buy directly on Phantom, transfer from another wallet, or buy on another exchange and send it to your wallet.</p>
+                </div>
+            </div>
+
+            <div class="step-card step-3">
+                <div class="step-content">
+                    <h3>GO TO RAYDIUM</h3>
+                    <p>Connect to Raydium or Jupiter in your browser. Connect your wallet. Paste the $TOOT token address into Raydium, select $TOOT, and confirm. When Phantom prompts you for a wallet signature, sign.</p>
+                </div>
+                <div class="step-number">3</div>
+            </div>
+
+            <div class="step-card step-4">
+                <div class="step-content">
+                    <h3>SWAP FOR $TOOT</h3>
+                    <p>Switch SOL for $TOOT. We have ZERO taxes so you don’t need to worry about buying with a specific slippage, although you may need to use slippage during times of market volatility.</p>
+                </div>
+                <div class="step-number">4</div>
+            </div>
+        </div>
+
+        <div class="giant-ca">
+            <h2>PASTE THIS CA INTO RAYDIUM:</h2>
+            <span class="ca-text" id="giantCaValue">So1ana1111ObviousTrade111111111111111TOOT</span>
+            <button class="btn-giant-copy" id="giantCopyBtn">COPY ADDRESS</button>
+        </div>
+    </main>
+
+    <footer>
+        <h2 class="logo" style="font-size: 3rem; margin-bottom: 10px;">$TOOT</h2>
+        <p style="font-size: 1.2rem; font-weight: bold; opacity: 0.8;">The Only Obvious Trade.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const menuToggleBtn = document.getElementById('menuToggleBtn');
+            const navLinks = document.getElementById('navLinks');
+            menuToggleBtn.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+                menuToggleBtn.innerText = navLinks.classList.contains('active') ? '✕' : '☰';
+            });
+
+            // Giant Copy Button Logic
+            const giantCopyBtn = document.getElementById('giantCopyBtn');
+            const giantCaValue = document.getElementById('giantCaValue');
+
+            giantCopyBtn.addEventListener('click', async () => {
+                try {
+                    await navigator.clipboard.writeText(giantCaValue.innerText);
+                    const originalText = giantCopyBtn.innerText;
+                    
+                    giantCopyBtn.innerText = 'BOOM! COPIED!';
+                    giantCopyBtn.style.backgroundColor = 'var(--mint)'; 
+                    giantCopyBtn.style.color = 'var(--black)'; 
+
+                    setTimeout(() => {
+                        giantCopyBtn.innerText = originalText;
+                        giantCopyBtn.style.backgroundColor = 'var(--pink)'; 
+                        giantCopyBtn.style.color = 'white';
+                    }, 2000);
+                } catch (err) {
+                    console.error('Failed to copy', err);
+                }
+            });
+        });
+    </script>
+</body>
+</html>

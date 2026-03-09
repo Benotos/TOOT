@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>$TOOT-ONOMICS | LET IT RIP</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Nunito:wght@800;900&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- BRAND VARIABLES --- */
+        :root {
+            --mint: #8be8b6; --green: #14F195; --purple: #9945FF;
+            --yellow: #FFEB3B; --pink: #FF007A; --black: #000000;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Nunito', sans-serif; overflow-x: hidden;
+            background-color: var(--black); color: white; position: relative;
+        }
+
+        /* --- HYPNOTIC BACKGROUND --- */
+        .hypnotic-bg {
+            position: fixed; top: -50vh; left: -50vw; width: 200vw; height: 200vh;
+            background: repeating-conic-gradient(from 0deg, var(--mint) 0deg 15deg, var(--green) 15deg 30deg);
+            animation: spinBg 40s linear infinite; z-index: -3;
+        }
+        @keyframes spinBg { 100% { transform: rotate(360deg); } }
+
+        .bg-overlay {
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+            background: radial-gradient(circle, transparent 0%, rgba(0,0,0,0.9) 80%);
+            z-index: -2;
+        }
+
+        /* --- FLOATING MONEY/ROCKETS --- */
+        .floating-emoji {
+            position: fixed; bottom: -100px; font-size: 3.5rem;
+            animation: floatUp 6s infinite ease-in; opacity: 0; z-index: -1;
+            filter: drop-shadow(4px 4px 0px #000);
+        }
+        @keyframes floatUp { 
+            0% { transform: translateY(0) scale(1) rotate(0deg); opacity: 0; } 
+            20% { opacity: 1; } 
+            100% { transform: translateY(-120vh) scale(2.5) rotate(45deg); opacity: 0; } 
+        }
+
+        /* --- HEADER (EXACT MATCH TO INDEX) --- */
+        header {
+            position: relative; z-index: 100; display: flex; justify-content: space-between; align-items: center;
+            padding: 15px 5%; background: var(--black); border-bottom: 5px solid var(--mint);
+        }
+        .logo {
+            font-family: 'Bangers', cursive; font-size: clamp(2.5rem, 5vw, 4rem);
+            color: var(--yellow); text-decoration: none; -webkit-text-stroke: 2px var(--black); 
+            text-shadow: 4px 4px 0px var(--purple); transform: rotate(-3deg); transition: 0.2s;
+        }
+        .logo:hover { transform: rotate(3deg) scale(1.1); }
+        
+        .nav-links { display: flex; gap: 20px; align-items: center; }
+        .nav-links a {
+            color: white; text-decoration: none; font-family: 'Bangers', cursive;
+            font-size: 1.5rem; letter-spacing: 2px; -webkit-text-stroke: 1px var(--black); transition: 0.2s;
+        }
+        /* Active Link is now TOKENOMICS */
+        .nav-links a.active { color: var(--pink); text-shadow: 3px 3px 0px var(--black); transform: translateY(-3px); }
+        .nav-links a:hover { color: var(--yellow); text-shadow: 3px 3px 0px var(--black); transform: translateY(-3px); }
+
+        .btn-brutal {
+            background: var(--pink); color: white; font-family: 'Bangers', cursive; font-size: clamp(1.2rem, 3vw, 1.8rem); 
+            letter-spacing: 2px; padding: 10px 20px; border: 4px solid var(--black); border-radius: 50px;
+            box-shadow: 6px 6px 0px var(--black); cursor: pointer; transition: 0.1s; transform: rotate(2deg); white-space: nowrap;
+        }
+        .btn-brutal:active { box-shadow: 0 0 0 var(--black); transform: translate(6px, 6px) rotate(0deg); }
+        .menu-toggle { display: none; background: none; border: none; font-size: 2.5rem; color: var(--mint); cursor: pointer; text-shadow: 3px 3px 0px var(--black); }
+
+        /* --- TOKENOMICS CONTENT --- */
+        .toke-section {
+            position: relative; z-index: 10; padding: 60px 5% 100px;
+            max-width: 1200px; margin: 0 auto; text-align: center;
+        }
+        .page-title {
+            font-family: 'Bangers', cursive; font-size: clamp(4rem, 10vw, 8rem);
+            color: white; -webkit-text-stroke: 3px var(--black);
+            text-shadow: 8px 8px 0px var(--purple), 16px 16px 0px var(--black);
+            margin-bottom: 10px; transform: rotate(-2deg);
+        }
+        .page-subtitle {
+            font-size: clamp(1.2rem, 4vw, 1.8rem); font-weight: 900; background: var(--black); color: white;
+            padding: 15px 30px; border: 4px solid var(--pink); border-radius: 20px; 
+            box-shadow: 8px 8px 0px var(--pink); display: inline-block; margin-bottom: 60px; transform: rotate(1deg);
+        }
+
+        /* Brutalist Grid */
+        .stats-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 40px;
+        }
+        .stat-card {
+            padding: 40px 20px; border: 6px solid var(--black); border-radius: 30px;
+            box-shadow: 12px 12px 0px var(--black); transition: 0.2s;
+        }
+        .stat-card:hover { transform: scale(1.05) translateY(-10px); }
+        
+        .stat-card h3 { font-family: 'Bangers', cursive; font-size: clamp(3.5rem, 8vw, 5rem); line-height: 1; -webkit-text-stroke: 2px var(--black); color: white; margin-bottom: 10px; }
+        .stat-card p { font-size: 1.5rem; font-weight: 900; color: var(--black); text-transform: uppercase; }
+
+        /* Individual Card Colors & Rotations */
+        .card-1 { background: var(--pink); transform: rotate(-3deg); }
+        .card-2 { background: var(--yellow); transform: rotate(2deg); }
+        .card-3 { background: var(--mint); transform: rotate(-1deg); }
+        .card-4 { background: var(--purple); transform: rotate(3deg); }
+
+        /* Security Badge */
+        .security-badge {
+            margin-top: 80px; background: var(--yellow); color: var(--black);
+            border: 6px dashed var(--black); border-radius: 20px; padding: 30px;
+            box-shadow: 10px 10px 0px var(--black); transform: rotate(-1deg);
+            max-width: 800px; margin-left: auto; margin-right: auto;
+        }
+        .security-badge h2 { font-family: 'Bangers', cursive; font-size: 3rem; margin-bottom: 10px; }
+        .security-badge p { font-size: 1.3rem; font-weight: 900; }
+
+        /* --- FOOTER --- */
+        footer { background: var(--black); border-top: 5px solid var(--pink); padding: 40px 5%; text-align: center; position: relative; z-index: 10; }
+
+        @media (max-width: 900px) {
+            .nav-links { display: none; flex-direction: column; position: absolute; top: 100%; left: 0; width: 100%; background: var(--black); border-bottom: 5px solid var(--mint); padding: 20px 0; }
+            .nav-links.active { display: flex; }
+            .menu-toggle { display: block; }
+            .btn-brutal { display: none; }
+            .stat-card { padding: 30px 15px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="hypnotic-bg"></div>
+    <div class="bg-overlay"></div>
+
+    <div class="floating-emoji" style="left: 15%; animation-delay: 0s;">💰</div>
+    <div class="floating-emoji" style="left: 45%; animation-delay: 2.5s;">🚀</div>
+    <div class="floating-emoji" style="left: 75%; animation-delay: 1s;">💸</div>
+
+    <header>
+        <a href="index.html" class="logo">$TOOT</a>
+        <button class="menu-toggle" id="menuToggleBtn">☰</button>
+        <nav class="nav-links" id="navLinks">
+            <a href="index.html">HOME</a>
+            <a href="tokenomics.html" class="active">TOKENOMICS</a>
+            <a href="how-to-buy.html">HOW TO BUY</a>
+            <a href="toot-booth.html">TOOT BOOTH</a>
+        </nav>
+        <button class="btn-brutal">CONNECT WALLET</button>
+    </header>
+
+    <main class="toke-section">
+        <h1 class="page-title">$TOOT-<br>ONOMICS</h1>
+        <p class="page-subtitle">NO HIDDEN FEES. NO BS. PURE GAS.</p>
+
+        <div class="stats-grid">
+            <div class="stat-card card-1">
+                <h3>1 BILLION</h3>
+                <p>TOTAL SUPPLY</p>
+            </div>
+            <div class="stat-card card-2">
+                <h3>0%</h3>
+                <p>BUY/SELL TAX</p>
+            </div>
+            <div class="stat-card card-3">
+                <h3>100%</h3>
+                <p>LIQUIDITY BURNED</p>
+            </div>
+            <div class="stat-card card-4">
+                <h3>REVOKED</h3>
+                <p>MINT AUTHORITY</p>
+            </div>
+        </div>
+
+        <div class="security-badge">
+            <h2>⚠️ NO RUGS ALLOWED ⚠️</h2>
+            <p>The contract is completely renounced. The LP tokens are burned to a crisp. The supply is fixed. The only way is up. Let it rip.</p>
+        </div>
+    </main>
+
+    <footer>
+        <h2 class="logo" style="font-size: 3rem; margin-bottom: 10px;">$TOOT</h2>
+        <p style="font-size: 1.2rem; font-weight: bold; opacity: 0.8;">The Only Obvious Trade.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const menuToggleBtn = document.getElementById('menuToggleBtn');
+            const navLinks = document.getElementById('navLinks');
+            menuToggleBtn.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+                menuToggleBtn.innerText = navLinks.classList.contains('active') ? '✕' : '☰';
+            });
+        });
+    </script>
+</body>
+</html>

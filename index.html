@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>$TOOT | LET IT RIP</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Nunito:wght@800;900&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --mint: #8be8b6;
+            --green: #14F195;
+            --purple: #9945FF;
+            --yellow: #FFEB3B;
+            --pink: #FF007A;
+            --black: #000000;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
+        
+        body {
+            font-family: 'Nunito', sans-serif;
+            overflow-x: hidden; /* Prevents mobile horizontal scroll break */
+            background-color: var(--black);
+            color: white;
+            position: relative;
+        }
+
+        /* --- HYPNOTIC BACKGROUND --- */
+        .hypnotic-bg {
+            position: fixed; top: -50vh; left: -50vw; width: 200vw; height: 200vh;
+            background: repeating-conic-gradient(from 0deg, var(--mint) 0deg 15deg, var(--green) 15deg 30deg);
+            animation: spinBg 40s linear infinite; z-index: -3;
+        }
+        @keyframes spinBg { 100% { transform: rotate(360deg); } }
+
+        .bg-overlay {
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+            background: radial-gradient(circle, transparent 0%, rgba(0,0,0,0.9) 80%);
+            z-index: -2;
+        }
+
+        /* --- FLOATING FARTS --- */
+        .fart {
+            position: fixed; bottom: -100px; font-size: 3rem;
+            animation: floatUp 5s infinite ease-in; opacity: 0; z-index: -1;
+            filter: drop-shadow(3px 3px 0px #000);
+        }
+        @keyframes floatUp { 
+            0% { transform: translateY(0) scale(1) rotate(0deg); opacity: 0; } 
+            20% { opacity: 1; } 
+            100% { transform: translateY(-120vh) scale(3) rotate(45deg); opacity: 0; } 
+        }
+
+        /* --- NAVIGATION HEADER --- */
+        header {
+            position: relative; z-index: 100;
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 15px 5%; background: var(--black);
+            border-bottom: 5px solid var(--mint);
+        }
+        .logo {
+            font-family: 'Bangers', cursive; font-size: clamp(2.5rem, 5vw, 4rem);
+            color: var(--yellow); text-decoration: none;
+            -webkit-text-stroke: 2px var(--black); text-shadow: 4px 4px 0px var(--purple);
+            transform: rotate(-3deg); transition: 0.2s;
+        }
+        .logo:hover { transform: rotate(3deg) scale(1.1); }
+        
+        /* Desktop Nav */
+        .nav-links { display: flex; gap: 20px; align-items: center; }
+        .nav-links a {
+            color: white; text-decoration: none; font-family: 'Bangers', cursive;
+            font-size: 1.5rem; letter-spacing: 2px; -webkit-text-stroke: 1px var(--black);
+            transition: 0.2s;
+        }
+        .nav-links a:hover { color: var(--pink); text-shadow: 3px 3px 0px var(--black); transform: translateY(-3px); }
+
+        .btn-brutal {
+            background: var(--pink); color: white;
+            font-family: 'Bangers', cursive; font-size: clamp(1.2rem, 3vw, 1.8rem); letter-spacing: 2px;
+            padding: 10px 20px; border: 4px solid var(--black); border-radius: 50px;
+            box-shadow: 6px 6px 0px var(--black); cursor: pointer;
+            transition: 0.1s; transform: rotate(2deg); white-space: nowrap;
+        }
+        .btn-brutal:active { box-shadow: 0 0 0 var(--black); transform: translate(6px, 6px) rotate(0deg); }
+
+        /* Mobile Menu Toggle */
+        .menu-toggle { display: none; background: none; border: none; font-size: 2.5rem; color: var(--mint); cursor: pointer; text-shadow: 3px 3px 0px var(--black); }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            position: relative; z-index: 10;
+            display: flex; align-items: center; justify-content: space-between;
+            max-width: 1300px; margin: 0 auto; padding: 60px 5%; min-height: 80vh;
+        }
+        .hero-text { flex: 1.2; }
+        .hero-title {
+            font-family: 'Bangers', cursive; font-size: clamp(4rem, 12vw, 9rem);
+            line-height: 0.85; color: white; -webkit-text-stroke: 3px var(--black);
+            text-shadow: 8px 8px 0px var(--purple), 16px 16px 0px var(--black);
+            margin-bottom: 20px; transform: rotate(-3deg);
+        }
+        
+        .hero-subtitle {
+            font-size: clamp(1.2rem, 4vw, 1.8rem); font-weight: 900;
+            background: var(--black); color: var(--mint);
+            padding: 20px; border: 4px solid var(--mint); border-radius: 20px; 
+            box-shadow: 8px 8px 0px var(--mint); max-width: 550px; margin-bottom: 40px;
+            transform: rotate(2deg);
+        }
+
+        .ca-box {
+            display: inline-flex; align-items: center; gap: 10px; flex-wrap: wrap;
+            background: var(--yellow); border: 5px solid var(--black);
+            padding: 10px 15px; border-radius: 50px; box-shadow: 8px 8px 0px var(--black);
+            transform: rotate(-1deg); width: 100%; max-width: 500px;
+        }
+        .ca-text { font-family: monospace; font-size: clamp(0.9rem, 3vw, 1.2rem); font-weight: 900; color: var(--black); word-break: break-all; flex: 1; }
+        .btn-copy {
+            background: var(--black); color: var(--mint); border: none; padding: 10px 20px; 
+            border-radius: 30px; font-family: 'Bangers', cursive; font-size: 1.3rem; 
+            cursor: pointer; transition: 0.2s;
+        }
+        .btn-copy:hover { background: var(--pink); color: white; transform: scale(1.1); }
+
+        .hero-visual { flex: 1; display: flex; justify-content: center; position: relative; margin-top: 40px; }
+        .mascot-img {
+            width: 100%; max-width: 450px; filter: drop-shadow(15px 15px 0px var(--black));
+            animation: crazyMascot 2s infinite alternate ease-in-out;
+        }
+        @keyframes crazyMascot { 0% { transform: scale(1) rotate(-5deg) translateY(0); } 100% { transform: scale(1.05) rotate(5deg) translateY(-20px); } }
+
+        /* --- CONTENT SECTIONS (FILLING THE PAGE) --- */
+        .content-section { position: relative; z-index: 10; padding: 80px 5%; max-width: 1200px; margin: 0 auto; text-align: center; }
+        .section-title {
+            font-family: 'Bangers', cursive; font-size: clamp(3rem, 8vw, 6rem);
+            color: var(--yellow); -webkit-text-stroke: 2px var(--black);
+            text-shadow: 6px 6px 0px var(--purple), 12px 12px 0px var(--black);
+            margin-bottom: 40px; transform: rotate(-2deg);
+        }
+
+        /* Comic Book About Card */
+        .about-card {
+            background: white; color: var(--black); padding: 40px;
+            border: 6px solid var(--black); border-radius: 30px;
+            box-shadow: 15px 15px 0px var(--pink); transform: rotate(1deg);
+            font-size: clamp(1.2rem, 4vw, 1.5rem); font-weight: 900; text-align: left;
+            margin: 0 auto; max-width: 800px;
+        }
+
+        /* Roadmap Grid */
+        .roadmap-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; margin-top: 40px; }
+        .roadmap-card {
+            background: var(--mint); color: var(--black); padding: 30px;
+            border: 5px solid var(--black); border-radius: 20px;
+            box-shadow: 10px 10px 0px var(--black); text-align: left;
+            transition: 0.2s;
+        }
+        .roadmap-card:nth-child(even) { background: var(--purple); color: white; transform: rotate(2deg); }
+        .roadmap-card:nth-child(odd) { transform: rotate(-2deg); }
+        .roadmap-card:hover { transform: scale(1.05) rotate(0deg); }
+        .roadmap-card h3 { font-family: 'Bangers', cursive; font-size: 2.5rem; letter-spacing: 1px; margin-bottom: 10px; }
+
+        /* --- DIAGONAL MARQUEE (Moved to break up sections) --- */
+        .crazy-marquee {
+            position: relative; z-index: 11; width: 110vw; left: -5vw;
+            background: var(--yellow); color: var(--black);
+            font-family: 'Bangers', cursive; font-size: clamp(3rem, 6vw, 5rem);
+            padding: 10px 0; border-top: 8px solid var(--black); border-bottom: 8px solid var(--black);
+            transform: rotate(-3deg); margin: 60px 0; box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+            white-space: nowrap; overflow: hidden;
+        }
+        .marquee-content { display: inline-block; animation: scrollFast 10s linear infinite; }
+        @keyframes scrollFast { 100% { transform: translateX(-50%); } }
+
+        /* --- FOOTER --- */
+        footer {
+            background: var(--black); border-top: 5px solid var(--pink);
+            padding: 40px 5%; text-align: center; position: relative; z-index: 10;
+        }
+
+        /* --- MOBILE MEDIA QUERIES --- */
+        @media (max-width: 900px) {
+            .nav-links {
+                display: none; flex-direction: column; position: absolute;
+                top: 100%; left: 0; width: 100%; background: var(--black);
+                border-bottom: 5px solid var(--mint); padding: 20px 0;
+            }
+            .nav-links.active { display: flex; }
+            .menu-toggle { display: block; }
+            .btn-brutal { display: none; /* Hide button in header on mobile to save space */ }
+            
+            .hero { flex-direction: column-reverse; text-align: center; padding-top: 20px; }
+            .hero-text { margin-top: 30px; display: flex; flex-direction: column; align-items: center; }
+            .about-card { padding: 25px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="hypnotic-bg"></div>
+    <div class="bg-overlay"></div>
+
+    <div class="fart" style="left: 10%; animation-delay: 0s;">💨</div>
+    <div class="fart" style="left: 50%; animation-delay: 2s;">💨</div>
+    <div class="fart" style="left: 80%; animation-delay: 1s;">💨</div>
+
+    <header>
+        <a href="index.html" class="logo">$TOOT</a>
+        
+        <button class="menu-toggle" id="menuToggleBtn">☰</button>
+        
+        <nav class="nav-links" id="navLinks">
+            <a href="index.html" style="color: var(--pink);">HOME</a>
+            <a href="tokenomics.html">TOKENOMICS</a>
+            <a href="how-to-buy.html">HOW TO BUY</a>
+            <a href="toot-booth.html">TOOT BOOTH</a>
+        </nav>
+        <button class="btn-brutal" id="connectWalletBtn">CONNECT WALLET</button>
+    </header>
+
+    <section class="hero">
+        <div class="hero-text">
+            <h1 class="hero-title">LET IT<br>RIP!</h1>
+            <p class="hero-subtitle">Catch the freshest breeze on Solana. Zero taxes. No BS. Just pure, unfiltered momentum.</p>
+            
+            <div class="ca-box">
+                <span class="ca-text" id="caValue">So1ana...Obvious...TOOT</span>
+                <button class="btn-copy" id="copyCaBtn">COPY</button>
+            </div>
+            <button class="btn-brutal" style="margin-top: 20px; display: inline-block;" onclick="alert('Wallet connection initiated!')">CONNECT WALLET</button>
+        </div>
+        
+        <div class="hero-visual">
+            <img src="mascot.jpg" alt="$TOOT Mascot" class="mascot-img" onerror="this.src='photo_2026-03-09_22-09-25.jpg';">
+        </div>
+    </section>
+
+    <div class="crazy-marquee">
+        <div class="marquee-content">
+            $TOOT • THE ONLY OBVIOUS TRADE • ZERO TAXES • LET IT RIP • $TOOT • THE ONLY OBVIOUS TRADE • ZERO TAXES • LET IT RIP • 
+        </div>
+    </div>
+
+    <section class="content-section">
+        <h2 class="section-title">WTF IS $TOOT?</h2>
+        <div class="about-card">
+            <p>In a blockchain full of fake roadmaps, over-engineered utility tokens, and rugs... one little green cloud decided to clear the room.</p>
+            <br>
+            <p>$TOOT isn't trying to change the world. It’s just trying to be The Only Obvious Trade. We are building a cult community based on the purest fundamentals: <strong>God-tier art, absolute chaos, and letting it rip on the Solana chart.</strong></p>
+        </div>
+    </section>
+
+    <section class="content-section" style="margin-bottom: 80px;">
+        <h2 class="section-title">THE FORECAST</h2>
+        <div class="roadmap-grid">
+            <div class="roadmap-card">
+                <h3>PHASE 1: THE RUMBLE</h3>
+                <p>Website launch, Toot Booth meme generator release, social media establishment, and the big contract deployment.</p>
+            </div>
+            <div class="roadmap-card">
+                <h3>PHASE 2: THE RELEASE</h3>
+                <p>Raydium listing, LP 100% burned, Mint authority revoked. CG & CMC fast-track applications.</p>
+            </div>
+            <div class="roadmap-card">
+                <h3>PHASE 3: THE WINDSTORM</h3>
+                <p>Massive Web3 marketing pushes, CEX listings, and exclusive airdrops for the diamond-handed gigachads.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <h2 class="logo" style="font-size: 3rem; margin-bottom: 10px;">$TOOT</h2>
+        <p style="font-size: 1.2rem; font-weight: bold; opacity: 0.8;">The Only Obvious Trade.</p>
+        <p style="font-size: 0.9rem; margin-top: 20px; opacity: 0.5;">Disclaimer: $TOOT is a memecoin. No intrinsic value. Just vibes.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            // Mobile Menu Toggle
+            const menuToggleBtn = document.getElementById('menuToggleBtn');
+            const navLinks = document.getElementById('navLinks');
+
+            menuToggleBtn.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+                menuToggleBtn.innerText = navLinks.classList.contains('active') ? '✕' : '☰';
+            });
+
+            // Copy CA Logic
+            const copyCaBtn = document.getElementById('copyCaBtn');
+            const caValue = document.getElementById('caValue');
+
+            copyCaBtn.addEventListener('click', async () => {
+                try {
+                    await navigator.clipboard.writeText(caValue.innerText);
+                    const originalText = copyCaBtn.innerText;
+                    
+                    copyCaBtn.innerText = 'COPIED!';
+                    copyCaBtn.style.backgroundColor = 'var(--mint)'; 
+                    copyCaBtn.style.color = 'var(--black)'; 
+
+                    setTimeout(() => {
+                        copyCaBtn.innerText = originalText;
+                        copyCaBtn.style.backgroundColor = 'var(--black)'; 
+                        copyCaBtn.style.color = 'var(--mint)';
+                    }, 2000);
+                } catch (err) {
+                    console.error('Failed to copy', err);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
